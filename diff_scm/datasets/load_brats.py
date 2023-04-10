@@ -134,7 +134,7 @@ class BrainDataset(torch.utils.data.Dataset):
         # Assuming item[1] is the gt
         if binary:
             self.skip_tumour = lambda item: item[1].sum() > 0
-            self.skip_healthy = lambda item: item[1].sum() < 1
+            self.skip_healthy = lambda item: item[1].sum() <= 0
         else:
             self.skip_tumour = lambda item: item[1][1:, ...].sum() > 5
             self.skip_healthy = lambda item: item[1][1:, ...].sum() < 5
@@ -147,6 +147,9 @@ class BrainDataset(torch.utils.data.Dataset):
             else:
                 # convert to one-hot gt encoding
                 y = np.concatenate([y == x for x in range(4)], axis=1)
+
+            x = F.interpolate(torch.from_numpy(x).float(), mode="bilinear", size=(64, 64))
+            y = F.interpolate(torch.from_numpy(y).float(), mode="bilinear", size=(64, 64))
 
             if scale_factor != 1: # Rescale on the fly if needed
                 x = F.interpolate(torch.from_numpy(x).float(), scale_factor=scale_factor, mode="bilinear", align_corners=False, recompute_scale_factor=True)
@@ -192,7 +195,7 @@ class BrainDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         item = {}
-        item['image'], item['gt'], item['coords'], item["patient_id"], item["slice_id"] = self.dataset[idx]
+        item['image'], item['gt'], item["patient_id"], item["slice_id"] = self.dataset[idx]
         
         # 'coords' is a Batch x 3 x Height x Width tensor providing a float in range (-1, 1) for a rough "location" of the
         # pixel in the 3D brain in the 3 axes. Can be ignored.

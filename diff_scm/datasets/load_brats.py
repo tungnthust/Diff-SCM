@@ -38,9 +38,9 @@ class PatientDataset(torch.utils.data.Dataset):
             # hashing of a function is tricky so this shouldn't be relied on too much...
             hash_object = hashlib.sha256((str(patient_dir)).encode("utf-8") + str(skip_condition.__code__.co_code).encode("utf-8"))
             name = hash_object.hexdigest()
-            if (self.patient_dir.parent.parent / "valid_indices_cache" / f"{name}.pkl").exists() and cache:
+            if (f"/kaggle/working/Diff-SCM/valid_data_indices_cache/{name}.pkl").exists() and cache:
                 import pickle
-                self.idx_map = pickle.load(open((self.patient_dir.parent.parent / "valid_indices_cache" / f"{name}.pkl"), "rb"))
+                self.idx_map = pickle.load(open(f"/kaggle/working/Diff-SCM/valid_data_indices_cache/{name}.pkl", "rb"))
                 self.len = len(self.idx_map)
             else:
                 # Try and find which slices should be skipped and thus determine the length of the dataset.
@@ -60,7 +60,7 @@ class PatientDataset(torch.utils.data.Dataset):
                 self.idx_map = {x: valid_indices[x] for x in range(self.len)}
                 if cache:
                     import pickle
-                    cache_dir = self.patient_dir.parent.parent / "valid_indices_cache"
+                    cache_dir = f"/kaggle/working/Diff-SCM/valid_data_indices_cache"
                     cache_dir.mkdir(exist_ok=True)
                     pickle.dump(self.idx_map, open(cache_dir / f"{name}.pkl", "wb"))
 

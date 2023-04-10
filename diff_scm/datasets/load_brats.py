@@ -70,7 +70,7 @@ class PatientDataset(torch.utils.data.Dataset):
         data = np.load(path)
         patient_str = "patient_"
         slice_str = "slice_"
-        patient_id = int(path[path.find(patient_str)+len(patient_str):path.rfind("/")])
+        patient_id = int(path[path.find(patient_str)+len(patient_str):path.rfind("/")].split("_")[1])
         slice_id = int(path[path.find(slice_str)+len(slice_str):path.rfind(".npz")])
         
         if self.process is not None:

@@ -60,7 +60,7 @@ class PatientDataset(torch.utils.data.Dataset):
                 self.idx_map = {x: valid_indices[x] for x in range(self.len)}
                 if cache:
                     import pickle
-                    cache_dir = f"/kaggle/working/Diff-SCM/valid_data_indices_cache"
+                    cache_dir = Path(f"/kaggle/working/Diff-SCM/valid_data_indices_cache")
                     cache_dir.mkdir(exist_ok=True)
                     pickle.dump(self.idx_map, open(cache_dir / f"{name}.pkl", "wb"))
 

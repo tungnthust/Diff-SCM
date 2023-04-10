@@ -38,7 +38,7 @@ class PatientDataset(torch.utils.data.Dataset):
             # hashing of a function is tricky so this shouldn't be relied on too much...
             hash_object = hashlib.sha256((str(patient_dir)).encode("utf-8") + str(skip_condition.__code__.co_code).encode("utf-8"))
             name = hash_object.hexdigest()
-            if (f"/kaggle/working/Diff-SCM/valid_data_indices_cache/{name}.pkl").exists() and cache:
+            if Path(f"/kaggle/working/Diff-SCM/valid_data_indices_cache/{name}.pkl").exists() and cache:
                 import pickle
                 self.idx_map = pickle.load(open(f"/kaggle/working/Diff-SCM/valid_data_indices_cache/{name}.pkl", "rb"))
                 self.len = len(self.idx_map)

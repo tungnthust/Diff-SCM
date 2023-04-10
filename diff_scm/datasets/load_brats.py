@@ -1,7 +1,7 @@
 import random
 from pathlib import Path
 from typing import List
-
+from tqdm import tqdm
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -46,7 +46,7 @@ class PatientDataset(torch.utils.data.Dataset):
                 # Try and find which slices should be skipped and thus determine the length of the dataset.
                 valid_indices = []
                 for idx in range(self.len):
-                    print(idx)
+                    # print(idx)
                     global i
                     i = i + 1
                     with np.load(self.slice_paths[idx]) as data:
@@ -183,13 +183,13 @@ class BrainDataset(torch.utils.data.Dataset):
         # Patients with tumours (e.g. for a semi-supervised case where some tumour labels are provided for training)
         self.patient_datasets = [PatientDataset(patient_dirs[i], process_fun=process, id=i, cache=cache,
                                                   skip_condition=self.skip_healthy if skip_healthy_s_in_tumour else None)
-                                 for i in range(self.n_tumour_patients)]
+                                 for i in tqdm(range(self.n_tumour_patients))]
 
         # + only healthy slices from "healthy" patients
         self.patient_datasets += [PatientDataset(patient_dirs[i],
                                                  skip_condition=self.skip_tumour if skip_tumour_s_in_healthy else None,
                                                  cache=cache, process_fun=process, id=i)
-                                  for i in range(self.n_tumour_patients, self.n_tumour_patients + self.n_healthy_patients)]
+                                  for i in tqdm(range(self.n_tumour_patients, self.n_tumour_patients + self.n_healthy_patients))]
 
         self.dataset = ConcatDataset(self.patient_datasets)
 

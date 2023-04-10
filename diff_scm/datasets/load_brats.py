@@ -170,7 +170,7 @@ class BrainDataset(torch.utils.data.Dataset):
             if coords is not None:
                 return torch.from_numpy(x[0]).float(), torch.from_numpy(y[0]).float(), torch.from_numpy(coords[0]).float()
             else:
-                return torch.from_numpy(x[0]).float(), torch.from_numpy(y[0]).float()
+                return x[0], y[0]
 
         patient_dirs = sorted(list(path.iterdir()))
         if split == "train":

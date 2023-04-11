@@ -117,9 +117,9 @@ def get_default_configs():
     training_class.classifier_use_fp16 = score_model.use_fp16
 
     # score conditioning
-    score_model.class_cond = False
+    score_model.class_cond = True
     score_model.num_classes = 2
-    score_model.classifier_free_cond = True
+    score_model.classifier_free_cond = False
     score_model.image_level_cond = False
     training_score.cond_dropout_rate = 0.35
 

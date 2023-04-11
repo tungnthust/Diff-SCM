@@ -51,7 +51,7 @@ def main(args):
         schedule_sampler=schedule_sampler,
         weight_decay=config.score_model.training.weight_decay,
         lr_anneal_steps=config.score_model.training.lr_anneal_steps,
-        cond_dropout_rate = config.score_model.training.cond_dropout_rate if config.score_model.class_cond else 0,
+        cond_dropout_rate = config.score_model.training.cond_dropout_rate if  not config.score_model.class_cond else 0,
         conditioning_variable = config.score_model.training.conditioning_variable,
         iterations = config.score_model.training.iterations
     ).run_loop()

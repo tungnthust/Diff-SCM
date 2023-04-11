@@ -16,9 +16,9 @@ def get_default_configs():
     config.data = data = ml_collections.ConfigDict()
     data.path = Path("/kaggle/input/brats2021/data/brats2021_preprocessed")
     data.sequence_translation = False # bool
-    data.healthy_data_percentage = None  # float [0,1]; 1 for training using full data; None for training with healthy data only
+    data.healthy_data_percentage = 1  # float [0,1]; 1 for training using full data; None for training with healthy data only
     config.experiment_name = f"anomaly_diffusion_healthy_only_train_" + dataset
-    experiment_path = r"experiment_data/"
+    experiment_path = r"/kaggle/working/experiment_data/"
 
     ## Diffusion parameters
     config.diffusion = diffusion = ml_collections.ConfigDict()

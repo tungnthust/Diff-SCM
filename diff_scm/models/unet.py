@@ -572,7 +572,6 @@ class UNetModel(nn.Module):
         emb = self.time_embed(timestep_embedding(timesteps, self.model_channels))
 
         if self.num_classes is not None:
-            print(y)
             class_embedding = self.class_embed(self.label_emb(y))
             class_embedding_mm = th.einsum("ab,ac -> abc",class_embedding,class_embedding)
             emb = emb + class_embedding

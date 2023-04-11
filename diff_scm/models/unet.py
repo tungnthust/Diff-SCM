@@ -567,7 +567,7 @@ class UNetModel(nn.Module):
         """
         if (conditioning_x is not None) and self.image_level_cond:
             x = th.cat([x, conditioning_x], dim=1)
-
+        print(f"Condition: {y}")
         hs = []
         emb = self.time_embed(timestep_embedding(timesteps, self.model_channels))
 

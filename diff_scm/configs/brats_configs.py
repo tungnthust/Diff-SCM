@@ -31,7 +31,7 @@ def get_default_configs():
     diffusion.rescale_learned_sigmas = False
     diffusion.predict_xstart = False
     diffusion.rescale_timesteps = False
-    diffusion.timestep_respacing = "ddim100"  # "" or "ddim25"
+    diffusion.timestep_respacing = "ddim1000"  # "" or "ddim25"
     diffusion.conditioning_noise = "constant"  # "constant" or "reverse"
 
     ## score model config

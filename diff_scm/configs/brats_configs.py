@@ -133,7 +133,7 @@ def get_default_configs():
     sampling.eta = 0.0
     sampling.label_of_intervention = "gt"
     sampling.conditioning_str = f"icond{config.score_model.image_level_cond}_ccond{config.score_model.class_cond}"
-    sampling.model_path =  experiment_path + config.experiment_name + f"/score_train_{sampling.conditioning_str}/model050000.pt"
+    sampling.model_path =  experiment_path + config.experiment_name + f"/score_train/model050000.pt"
     sampling.classifier_path = experiment_path + config.experiment_name + "/classifier_train_" + "_".join(
         config.classifier.label) + "/model019000.pt"
     sampling.classifier_scale = 0.0

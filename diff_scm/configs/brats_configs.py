@@ -101,7 +101,7 @@ def get_default_configs():
     classifier.attention_ds = tuple(attention_ds)
 
     config.classifier.training = training_class = ml_collections.ConfigDict()
-    training_class.noised = False
+    training_class.noised = True
     training_class.adversarial_training = False
     training_class.iterations = 20000
     training_class.lr = 1e-4

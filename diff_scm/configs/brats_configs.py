@@ -138,7 +138,7 @@ def get_default_configs():
         config.classifier.label) + "/model019000.pt"
     sampling.classifier_scale = 100.0
     sampling.norm_cond_scale = 3.0
-    sampling.sampling_progression_ratio = 0.75
+    sampling.sampling_progression_ratio = 0.5
     sampling.sdedit_inpaint = False
     sampling.detection = True
     sampling.source_class = 1 # int in range [0, num_class-1]

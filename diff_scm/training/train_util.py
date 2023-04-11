@@ -217,7 +217,6 @@ class TrainLoop:
             self.ddp_model.train()
             if self.cond_dropout_rate != 0:
                 model_conditionals = self.conditioning_dropout(model_conditionals)
-                print(f"Conditionals: {model_conditionals}")
         else:
             self.ddp_model.eval()
         

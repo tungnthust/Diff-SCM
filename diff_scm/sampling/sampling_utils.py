@@ -71,7 +71,7 @@ def get_models_functions(config, model, anti_causal_predictor):
             return grad_log_conditional * config.sampling.classifier_scale  # * scaling[:, None, None, None]
 
     def model_fn(x, t, y=None, conditioning_x=None, **kwargs):
-        y = (config.score_model.num_classes * torch.ones((config.sampling.batch_size,))).to(torch.long).to(dist_util.dev())
+        y = (torch.ones((config.sampling.batch_size,))).to(torch.long).to(dist_util.dev())
         return model(x, t, y = y, conditioning_x=conditioning_x)
     
     # Create an classifier-free guidance sampling function from Glide code

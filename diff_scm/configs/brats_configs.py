@@ -136,7 +136,7 @@ def get_default_configs():
     sampling.model_path =  experiment_path + config.experiment_name + f"/score_train/model050000.pt"
     sampling.classifier_path = experiment_path + config.experiment_name + "/classifier_train_" + "_".join(
         config.classifier.label) + "/model019000.pt"
-    sampling.classifier_scale = 0.0
+    sampling.classifier_scale = 100.0
     sampling.norm_cond_scale = 3.0
     sampling.sampling_progression_ratio = 0.75
     sampling.sdedit_inpaint = False

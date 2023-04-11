@@ -107,7 +107,7 @@ def get_default_configs():
     training_class.lr = 1e-4
     training_class.weight_decay = 0.0
     training_class.anneal_lr = False
-    training_class.batch_size = 48
+    training_class.batch_size = 64
     training_class.microbatch = -1
     training_class.schedule_sampler = "uniform"
     training_class.resume_checkpoint = False  # ""

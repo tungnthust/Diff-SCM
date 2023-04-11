@@ -96,8 +96,8 @@ def main(args):
     def forward_backward_log(data_loader, prefix="train"):
         data_dict = next(data_loader)
         batch = data_dict["image"].to(dist_util.dev())
-        if args.dataset == "brats":
-            batch = torchvision.transforms.Resize(size=256)(batch)
+        # if args.dataset == "brats":
+        #     batch = torchvision.transforms.Resize(size=256)(batch)
         labels = data_dict["y"].to(dist_util.dev())
 
         # Noisy images

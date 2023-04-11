@@ -72,6 +72,8 @@ def get_default_configs():
     training_score.log_interval = 50
     training_score.save_interval = 5000
     training_score.resume_checkpoint = "/kaggle/working/experiment_data/anomaly_diffusion_healthy_only_train_brats2021_64x64/score_train/model040000.pt"
+    training_score.resume_checkpoint = False
+
     training_score.use_fp16 = score_model.use_fp16
     training_score.fp16_scale_growth = 1e-3
     training_score.conditioning_variable = "gt"

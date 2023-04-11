@@ -54,6 +54,7 @@ def get_data_loader_brats(path, batch_size, split_set: str = 'train',
         default_kwargs["num_workers"] = 1
         dataset = BrainDataset(path, n_tumour_patients = None,
                                n_healthy_patients = 0, split = split_set, 
+                               skip_healthy_s_in_tumour=True,
                                sequence_translation = sequence_translation,
                                )
         return torch.utils.data.DataLoader(dataset, **default_kwargs)

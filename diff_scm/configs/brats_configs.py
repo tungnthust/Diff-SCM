@@ -71,7 +71,7 @@ def get_default_configs():
     training_score.ema_rate = "0.9999"  # comma-separated list of EMA values
     training_score.log_interval = 50
     training_score.save_interval = 5000
-    training_score.resume_checkpoint = "/kaggle/working/experiment_data/anomaly_diffusion_healthy_only_train_brats2021_64x64/score_train/model010000.pt"
+    training_score.resume_checkpoint = "/kaggle/working/experiment_data/anomaly_diffusion_healthy_only_train_brats2021_64x64/score_train/model025000.pt"
     # training_score.resume_checkpoint = False
 
     training_score.use_fp16 = score_model.use_fp16
